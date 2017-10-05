@@ -1,18 +1,6 @@
 
-# Generate a new key if this is required
-resource "tls_private_key" "icpkey" {
-  count       = "${var.generate_key ? 1 : 0}"
-  algorithm   = "RSA"
-  
-  provisioner "local-exec" {
-    command = "cat > privatekey.pem <<EOL\n${tls_private_key.icpkey.private_key_pem}\nEOL"
-  }
-}
-
 ## Actions that needs to be taken on boot master only
 resource "null_resource" "icp-boot" {
-
-  depends_on = ["null_resource.icp-cluster"]
 
   # The first master is always the boot master where we run provisioning jobs from
   connection {
