@@ -130,11 +130,6 @@ resource "null_resource" "icp-boot" {
     destination = "/opt/ibm/cluster/masterlist.txt"
   }
 
-  provisioner "file" {
-    content = "${join(",", var.icp-proxy)}"
-    destination = "/opt/ibm/cluster/proxylist.txt"
-  }  
-  
   provisioner "remote-exec" {
     inline = [
       "/tmp/icp-bootmaster-scripts/generate_hostsfiles.sh",

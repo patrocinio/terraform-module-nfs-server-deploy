@@ -20,11 +20,6 @@ variable "icp-worker" {
   description =  "IP addresses of ICP Worker nodes."
 }
 
-variable "icp-proxy" { 
-  type        = "list"
-  description =  "IP addresses of ICP Proxy nodes."
-}
-
 variable "enterprise-edition" {
   description = "Whether to provision enterprise edition (EE) or community edition (CE). EE requires image files to be provided"
   default     = false
@@ -96,5 +91,5 @@ variable "config_strategy" {
 
 
 locals {
-  icp-ips     = "${concat(var.icp-master, var.icp-proxy, var.icp-worker)}"
+  icp-ips     = "${concat(var.icp-master, var.icp-worker)}"
 }
