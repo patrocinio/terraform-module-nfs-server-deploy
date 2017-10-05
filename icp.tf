@@ -1,6 +1,6 @@
 
 ## Actions that needs to be taken on boot master only
-resource "null_resource" "icp-boot" {
+resource "null_resource" "nfs" {
 
   # The first master is always the boot master where we run provisioning jobs from
   connection {
