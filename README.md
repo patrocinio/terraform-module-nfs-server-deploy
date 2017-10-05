@@ -30,25 +30,10 @@ If the default SSH user is not the root user, the default user must have passwor
 ## Usage example
 
 ```hcl
-module "icpprovision" {
+module "provision" {
     source = "github.com/ibm-cloud-architecture/terraform-module-icp-deploy"
     
     nfs = ["${softlayer_virtual_guest.nfs.ipv4_address}"]
-    
-    enterprise-edition = false
-    #icp-version = "2.1.0-beta-1"
-    icp-version = "1.2.0"
-
-    /* Workaround for terraform issue #10857
-     When this is fixed, we can work this out autmatically */
-    cluster_size  = "${var.master["nodes"] + var.worker["nodes"] + var.proxy["nodes"]}"
-
-    icp_configuration = {
-      "network_cidr"              = "192.168.0.0/16"
-      "service_cluster_ip_range"  = "172.16.0.1/24"
-    }
-
-    generate_key = true
     
     ssh_user  = "ubuntu"
     ssh_key   = "~/.ssh/id_rsa"
