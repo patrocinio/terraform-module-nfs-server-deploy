@@ -88,20 +88,6 @@ resource "null_resource" "icp-boot" {
     destination = "/tmp/icp-bootmaster-scripts"
   }
   
-  provisioner "remote-exec" {
-    inline = [
-      "chmod a+x /tmp/icp-bootmaster-scripts/*.sh",
-      "/tmp/icp-bootmaster-scripts/load-image.sh ${var.icp-version} /tmp/${basename(var.image_file)}",
-      "sudo mkdir -p /opt/ibm/cluster",
-      "sudo chown ${var.ssh_user} /opt/ibm/cluster",
-      "/tmp/icp-bootmaster-scripts/copy_cluster_skel.sh ${var.icp-version}",
-      "sudo chown ${var.ssh_user} /opt/ibm/cluster/*",
-      "chmod 600 /opt/ibm/cluster/ssh_key",
-      "sudo pip install pyyaml",
-      "python /tmp/icp-bootmaster-scripts/load-config.py ${var.config_strategy}"
-    ]
-  }
-
   # Copy the provided or generated private key
   provisioner "file" {
       content = "${var.generate_key ? tls_private_key.icpkey.private_key_pem : file(var.icp_priv_keyfile)}"
