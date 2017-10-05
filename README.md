@@ -70,17 +70,5 @@ Details on configuration items on ICP KnowledgeCenter
 * [ICP 2.1.0-Beta](https://www.ibm.com/support/knowledgecenter/SSBS6K_2.1.0/installing/config_yaml.html)
 
 
-### Scaling
-The module supports automatic scaling of worker nodes.
-To scale simply add more nodes in the root resource supplying the `icp-worker` variable.
-You can see working examples for softlayer [in the icp-softlayer](https://github.com/ibm-cloud-architecture/terraform-icp-softlayer) repository
-
-Please note, because of how terraform handles module dependencies and triggers, it is currently necessary to retrigger the scaling resource **after scaling down** nodes.
-If you don't do this ICP will continue to report inactive nodes until the next scaling event.
-To manually trigger the removal of deleted node, run these commands:
-
-1. `terraform taint --module icpprovision null_resource.icp-worker-scaler`
-2. `terraform apply`
-
 
 
