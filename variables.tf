@@ -54,14 +54,6 @@ variable "cluster_size" {
   description = "Define total clustersize. Workaround for terraform issue #10857."
 }
 
-/*
-  ICP Configuration 
-  Configuration file is generated from items in the following order
-  1. config.yaml shipped with ICP (if config_strategy = merge, else blank)
-  2. config.yaml specified in icp_config_file
-  3. key: value items specified in icp_configuration
-
-*/
 variable "icp_config_file" {
   description = "Yaml configuration file for ICP installation"
   default     = "/dev/null"
@@ -72,13 +64,6 @@ variable "icp_configuration" {
   type        = "map"
   default     = {}
 }
-
-variable "config_strategy" {
-  description  = "Strategy for original config.yaml shipped with ICP. Default is merge, everything else means override"
-  default      = "merge"
-  
-}
-
 
 locals {
   icp-ips     = "${var.nfs}"

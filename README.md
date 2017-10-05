@@ -17,7 +17,6 @@ If the default SSH user is not the root user, the default user must have passwor
 |  icp_configuration   |   {}   |  No  |   Configuration items for ICP installation.                | 
 |  enterprise-edition   |   False   |  No  |   Whether to provision enterprise edition (EE) or community edition (CE). EE requires image files to be provided                | 
 |  ssh_key   |   ~/.ssh/id_rsa   |  No  |   Private key corresponding to the public key that the cloud servers are provisioned with                | 
-|  config_strategy   |   merge   |  No  |   Strategy for original config.yaml shipped with ICP. Default is merge, everything else means override                | 
 |  icppassword   |   admin   |  No  |   Password of initial admin user. Default: Admin                | 
 |  ssh_user   |   root   |  No  |   Username to ssh into the ICP cluster. This is typically the default user with for the relevant cloud vendor                | 
 |  icp_pub_keyfile   |   /dev/null   |  No  |   Public ssh key for ICP Boot master to connect to ICP Cluster. Only use when generate_key = false                | 
@@ -57,16 +56,6 @@ module "icpprovision" {
 } 
 ```
 
-### ICP Configuration 
-Configuration file is generated from items in the following order
-
-1. config.yaml shipped with ICP (if config_strategy = merge, else blank)
-2. config.yaml specified in `icp_config_file`
-3. key: value items specified in `icp_configuration`
-
-Details on configuration items on ICP KnowledgeCenter
-* [ICP 1.2.0](https://www.ibm.com/support/knowledgecenter/SSBS6K_1.2.0/installing/config_yaml.html)
-* [ICP 2.1.0-Beta](https://www.ibm.com/support/knowledgecenter/SSBS6K_2.1.0/installing/config_yaml.html)
 
 
 

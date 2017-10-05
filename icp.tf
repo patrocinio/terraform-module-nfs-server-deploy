@@ -88,18 +88,6 @@ resource "null_resource" "icp-boot" {
     destination = "/tmp/icp-bootmaster-scripts"
   }
   
-  # store config yaml if it was specified
-  provisioner "file" {
-    source       = "${var.icp_config_file}"
-    destination = "/tmp/config.yaml"
-  }
-  
-  # JSON dump the contents of icp_configuration items
-  provisioner "file" {
-    content     = "${jsonencode(var.icp_configuration)}"
-    destination = "/tmp/items-config.yaml"
-  }
-
   provisioner "remote-exec" {
     inline = [
       "chmod a+x /tmp/icp-bootmaster-scripts/*.sh",
