@@ -12,17 +12,9 @@ resource "null_resource" "nfs" {
 
   provisioner "remote-exec" {
     inline = [
-      "sudo apt install nfs-kernel-server"
+      "sudo apt install -y nfs-kernel-server"
     ]
   }
 
-  
-  # Check if var.ssh_user is root. If not add ansible_become lines 
-  
-  provisioner "remote-exec" {
-    inline = [
-      
-    ]
-  }
 }
 
