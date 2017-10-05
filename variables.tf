@@ -1,9 +1,4 @@
 # Username and password for the initial admin user
-variable "icpuser" { 
-  type        = "string"
-  description = "Username of initial admin user. Default: Admin"
-  default     = "admin" 
-}
 variable "icppassword" { 
   type        = "string"
   description = "Password of initial admin user. Default: Admin"

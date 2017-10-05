@@ -17,7 +17,6 @@ If the default SSH user is not the root user, the default user must have passwor
 |  icp_configuration   |   {}   |  No  |   Configuration items for ICP installation.                | 
 |  enterprise-edition   |   False   |  No  |   Whether to provision enterprise edition (EE) or community edition (CE). EE requires image files to be provided                | 
 |  ssh_key   |   ~/.ssh/id_rsa   |  No  |   Private key corresponding to the public key that the cloud servers are provisioned with                | 
-|  icpuser   |   admin   |  No  |   Username of initial admin user. Default: Admin                | 
 |  config_strategy   |   merge   |  No  |   Strategy for original config.yaml shipped with ICP. Default is merge, everything else means override                | 
 |  icppassword   |   admin   |  No  |   Password of initial admin user. Default: Admin                | 
 |  ssh_user   |   root   |  No  |   Username to ssh into the ICP cluster. This is typically the default user with for the relevant cloud vendor                | 
