@@ -13,7 +13,6 @@ If the default SSH user is not the root user, the default user must have passwor
 |-----------|-----------|---------|--------|
 |  icp-version   |      |  Yes  |   Version of ICP to provision. Format Can be tag, repo:tag or org/repo:tag. <br>For example `1.2.0`, `1.2.0-ee`, `icp-inception:2.1.0-beta-2`.<br>`ibmcom` is default org, `cfc-installer` is default repo  | 
 |  icp-master   |      |  Yes  |   IP address of ICP Masters. First master will also be boot master. CE edition only supports single master                 | 
-|  icp-worker   |      |  Yes  |   IP addresses of ICP Worker nodes.                | 
 |  cluster_size   |      |  Yes  |   Define total clustersize. Workaround for terraform issue #10857.                | 
 |  icp_configuration   |   {}   |  No  |   Configuration items for ICP installation.                | 
 |  enterprise-edition   |   False   |  No  |   Whether to provision enterprise edition (EE) or community edition (CE). EE requires image files to be provided                | 
@@ -37,7 +36,6 @@ module "icpprovision" {
     source = "github.com/ibm-cloud-architecture/terraform-module-icp-deploy"
     
     icp-master = ["${softlayer_virtual_guest.icpmaster.ipv4_address}"]
-    icp-worker = ["${softlayer_virtual_guest.icpworker.*.ipv4_address}"]
     
     enterprise-edition = false
     #icp-version = "2.1.0-beta-1"
