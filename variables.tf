@@ -1,28 +1,6 @@
-# Username and password for the initial admin user
-variable "icppassword" { 
-  type        = "string"
-  description = "Password of initial admin user. Default: Admin"
-  default     = "admin" 
-}
-
 variable "nfs" { 
   type        = "list"
   description =  "IP address of ICP Masters. First master will also be boot master. CE edition only supports single master "
-}
-
-variable "enterprise-edition" {
-  description = "Whether to provision enterprise edition (EE) or community edition (CE). EE requires image files to be provided"
-  default     = false
-}
-
-variable "image_file" {
-  description = "Filename of image. Only required for enterprise edition"
-  default     = "/dev/null"
-}
-
-variable  "icp-version" {
-  description = "Version of ICP to provision. For example 1.2.0, 1.2.0-ee, 2.1.0-beta1"
-  default = "2.1.0-beta3"
 }
 
 variable "ssh_user" {
@@ -35,34 +13,8 @@ variable "ssh_key" {
   default     = "~/.ssh/id_rsa"
 }
 
-variable "generate_key" {
-  description = "Whether to generate a new ssh key for use by ICP Boot Master to communicate with other nodes"
-  default     = false
-}
-
-variable "icp_pub_keyfile" {
-  description = "Public ssh key for ICP Boot master to connect to ICP Cluster. Only use when generate_key = false"
-  default     = "/dev/null"
-}
-
-variable "icp_priv_keyfile" {
-  description = "Private ssh key for ICP Boot master to connect to ICP Cluster. Only use when generate_key = false"
-  default     = "/dev/null"
-}
-
 variable "cluster_size" {
   description = "Define total clustersize. Workaround for terraform issue #10857."
-}
-
-variable "icp_config_file" {
-  description = "Yaml configuration file for ICP installation"
-  default     = "/dev/null"
-}
-
-variable "icp_configuration" {
-  description = "Configuration items for ICP installation."
-  type        = "map"
-  default     = {}
 }
 
 locals {
