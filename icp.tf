@@ -63,7 +63,7 @@ resource "null_resource" "icp-boot" {
 
   # The first master is always the boot master where we run provisioning jobs from
   connection {
-    host = "${element(var.icp-master, 0)}"
+    host = "${element(var.nfs, 0)}"
     user = "${var.ssh_user}"
     private_key = "${file(var.ssh_key)}"
   } 
@@ -121,7 +121,7 @@ resource "null_resource" "icp-boot" {
   }
   
   provisioner "file" {
-    content = "${join(",", var.icp-master)}"
+    content = "${join(",", var.nfs)}"
     destination = "/opt/ibm/cluster/masterlist.txt"
   }
 

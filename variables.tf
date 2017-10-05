@@ -10,7 +10,7 @@ variable "icppassword" {
   default     = "admin" 
 }
 
-variable "icp-master" { 
+variable "nfs" { 
   type        = "list"
   description =  "IP address of ICP Masters. First master will also be boot master. CE edition only supports single master "
 }
@@ -86,5 +86,5 @@ variable "config_strategy" {
 
 
 locals {
-  icp-ips     = "${var.icp-master}"
+  icp-ips     = "${var.nfs}"
 }
