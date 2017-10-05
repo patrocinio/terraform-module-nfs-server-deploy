@@ -13,10 +13,6 @@ variable "ssh_key" {
   default     = "~/.ssh/id_rsa"
 }
 
-variable "cluster_size" {
-  description = "Define total clustersize. Workaround for terraform issue #10857."
-}
-
 locals {
   icp-ips     = "${var.nfs}"
 }
